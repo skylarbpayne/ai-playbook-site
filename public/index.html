@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The AI Playbook</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #d0d0d0;
+            line-height: 1.75;
+            font-size: 17px;
+        }
+        
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+        
+        /* Banner */
+        .banner {
+            margin-bottom: 48px;
+            text-align: center;
+        }
+        
+        .banner img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 24px;
+            line-height: 1.25;
+        }
+        
+        h2 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin: 40px 0 16px;
+            font-weight: 600;
+        }
+        
+        p { margin-bottom: 18px; }
+        
+        strong, b { color: #ffffff; }
+        
+        .green { color: #4ade80; }
+        
+        /* Pain callout */
+        .pain-box {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+        
+        .pain-box p {
+            margin-bottom: 12px;
+            color: #909090;
+            font-style: italic;
+        }
+        
+        .pain-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Example */
+        .example {
+            background: #0d1117;
+            border-left: 3px solid #4ade80;
+            padding: 20px;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+        
+        .example-label {
+            color: #4ade80;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .example code {
+            display: block;
+            color: #b0b0b0;
+            white-space: pre-wrap;
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        /* What's in it */
+        .whats-in {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .whats-in li {
+            padding: 14px 0;
+            padding-left: 28px;
+            border-bottom: 1px solid #151515;
+            position: relative;
+        }
+        
+        .whats-in li:last-child { border-bottom: none; }
+        
+        .check {
+            color: #4ade80;
+            position: absolute;
+            left: 0;
+            top: 14px;
+        }
+        
+        /* Author */
+        .author {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin: 40px 0;
+            padding: 20px;
+            background: #0f0f0f;
+            border-radius: 8px;
+        }
+        
+        .author-img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-text {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        .author-text strong {
+            display: block;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        
+        /* CTA */
+        .cta {
+            background: linear-gradient(to bottom, #0f1a0f, #0a0a0a);
+            border: 1px solid #1a2a1a;
+            border-radius: 12px;
+            padding: 36px 28px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .price {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .price-sub {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .buy-btn {
+            display: inline-block;
+            background: #4ade80;
+            color: #0a0a0a;
+            font-weight: 600;
+            padding: 14px 36px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.15s;
+        }
+        
+        .buy-btn:hover { background: #3dd673; }
+        
+        .guarantee {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: #444;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 32px;
+            color: #333;
+            font-size: 0.8rem;
+        }
+        
+        footer a { color: #4ade80; }
+        
+        @media (max-width: 500px) {
+            h1 { font-size: 1.6rem; }
+            .author { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Banner Logo -->
+        <div class="banner">
+            <img src="banner-logo.png" alt="The AI Playbook">
+        </div>
+        
+        <h1>You've tried ChatGPT.<br>It didn't stick.</h1>
+        
+        <div class="pain-box">
+            <p>"My coworkers keep talking about how much time AI saves them. I just feel like I'm doing it wrong."</p>
+            <p>"I spent an hour trying to get ChatGPT to write one email. I could've just written it myself."</p>
+            <p>"I'm starting to think AI is just hype and I've been wasting my time."</p>
+        </div>
+        
+        <p>If this sounds familiar, you're not bad at AI. <strong>You're just using it wrong.</strong></p>
+        
+        <p>Most people treat AI like a search engine: ask a question, get an answer, move on. That's maybe 10% of what it can do.</p>
+        
+        <p>The people getting real value treat AI like a <span class="green">coworker</span> — someone you onboard, give context to, and collaborate with throughout the day.</p>
+        
+        <h2>What "using AI like a coworker" actually means</h2>
+        
+        <p>I have an AI assistant named Palmer. He knows:</p>
+        
+        <ul class="whats-in">
+            <li><span class="check">→</span> What I'm working on this week</li>
+            <li><span class="check">→</span> My communication style</li>
+            <li><span class="check">→</span> My calendar and deadlines</li>
+            <li><span class="check">→</span> The context of ongoing projects</li>
+        </ul>
+        
+        <p>So when I send him something like this:</p>
+        
+        <div class="example">
+            <div class="example-label">Real message from this morning</div>
+            <code>Meeting with CTO in an hour about my role.
+Feeling like I can't get enough leverage.
+What would make this a win regardless of outcome?</code>
+        </div>
+        
+        <p>I don't have to explain who I am, what company, or what "leverage" means here. He already knows. The response is specific to my situation, not generic advice.</p>
+        
+        <p><strong>That's the difference.</strong> And it's learnable.</p>
+        
+        <h2>What's in the playbook</h2>
+        
+        <ul class="whats-in">
+            <li><span class="check">✓</span> <strong>The onboarding conversation</strong> — give AI context so it stops being generic</li>
+            <li><span class="check">✓</span> <strong>5 high-value workflows</strong> — research, writing, planning, analysis, automation</li>
+            <li><span class="check">✓</span> <strong>15 templates</strong> — copy-paste prompts I actually use daily</li>
+            <li><span class="check">✓</span> <strong>Tool comparison</strong> — ChatGPT vs Claude vs Gemini (honest breakdown)</li>
+            <li><span class="check">✓</span> <strong>Setting up automations</strong> — tasks that run while you sleep</li>
+            <li><span class="check">✓</span> <strong>What NOT to use AI for</strong> — where it makes you worse</li>
+        </ul>
+        
+        <p>18 pages. No filler. I wrote it the way I'd want to read it.</p>
+        
+        <div class="author">
+            <div class="author-img">
+                <img src="headshot.jpg" alt="Skylar Payne">
+            </div>
+            <div class="author-text">
+                <strong>Skylar Payne</strong>
+                10 years building AI systems. This is the playbook I actually use.
+            </div>
+        </div>
+        
+        <div class="cta">
+            <div class="price">$29</div>
+            <div class="price-sub">PDF · Instant download · Free updates</div>
+            <a href="https://buy.stripe.com/test_4gMaEQ70o3tK8P7cbr24000" class="buy-btn">Get the Playbook</a>
+            <div class="guarantee">Full refund if it's not useful. No questions.</div>
+        </div>
+        
+    </div>
+    
+    <footer>
+        <a href="mailto:skylar@aiplaybook.work">skylar@aiplaybook.work</a>
+    </footer>
+</body>
+</html>
