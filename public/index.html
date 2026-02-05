@@ -16,12 +16,11 @@
         }
         
         .container {
-            max-width: 640px;
+            max-width: 720px;
             margin: 0 auto;
             padding: 48px 24px;
         }
         
-        /* Banner */
         .banner {
             margin-bottom: 48px;
             text-align: center;
@@ -53,7 +52,6 @@
         
         .green { color: #4ade80; }
         
-        /* Pain callout */
         .pain-box {
             background: #0f0f0f;
             border: 1px solid #1a1a1a;
@@ -68,11 +66,21 @@
             font-style: italic;
         }
         
-        .pain-box p:last-child {
-            margin-bottom: 0;
+        .pain-box p:last-child { margin-bottom: 0; }
+        
+        /* Visual sections */
+        .visual {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
         }
         
-        /* Example */
+        .visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
         .example {
             background: #0d1117;
             border-left: 3px solid #4ade80;
@@ -99,7 +107,6 @@
             line-height: 1.5;
         }
         
-        /* What's in it */
         .whats-in {
             list-style: none;
             margin: 20px 0;
@@ -121,7 +128,6 @@
             top: 14px;
         }
         
-        /* Author */
         .author {
             display: flex;
             gap: 16px;
@@ -133,8 +139,8 @@
         }
         
         .author-img {
-            width: 56px;
-            height: 56px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
@@ -157,7 +163,6 @@
             margin-bottom: 2px;
         }
         
-        /* CTA */
         .cta {
             background: linear-gradient(to bottom, #0f1a0f, #0a0a0a);
             border: 1px solid #1a2a1a;
@@ -217,7 +222,6 @@
 <body>
     <div class="container">
         
-        <!-- Banner Logo -->
         <div class="banner">
             <img src="banner-logo.png" alt="The AI Playbook">
         </div>
@@ -227,25 +231,22 @@
         <div class="pain-box">
             <p>"My coworkers keep talking about how much time AI saves them. I just feel like I'm doing it wrong."</p>
             <p>"I spent an hour trying to get ChatGPT to write one email. I could've just written it myself."</p>
-            <p>"I'm starting to think AI is just hype and I've been wasting my time."</p>
         </div>
         
         <p>If this sounds familiar, you're not bad at AI. <strong>You're just using it wrong.</strong></p>
         
         <p>Most people treat AI like a search engine: ask a question, get an answer, move on. That's maybe 10% of what it can do.</p>
         
+        <!-- Visual: Search vs Coworker -->
+        <div class="visual">
+            <img src="visual-search-vs-coworker.png" alt="Search Engine Mode vs Coworker Mode">
+        </div>
+        
         <p>The people getting real value treat AI like a <span class="green">coworker</span> — someone you onboard, give context to, and collaborate with throughout the day.</p>
         
-        <h2>What "using AI like a coworker" actually means</h2>
+        <h2>What this looks like in practice</h2>
         
-        <p>I have an AI assistant named Palmer. He knows:</p>
-        
-        <ul class="whats-in">
-            <li><span class="check">→</span> What I'm working on this week</li>
-            <li><span class="check">→</span> My communication style</li>
-            <li><span class="check">→</span> My calendar and deadlines</li>
-            <li><span class="check">→</span> The context of ongoing projects</li>
-        </ul>
+        <p>I have an AI assistant named Palmer. He knows what I'm working on, my communication style, and the context of ongoing projects.</p>
         
         <p>So when I send him something like this:</p>
         
@@ -256,9 +257,18 @@ Feeling like I can't get enough leverage.
 What would make this a win regardless of outcome?</code>
         </div>
         
-        <p>I don't have to explain who I am, what company, or what "leverage" means here. He already knows. The response is specific to my situation, not generic advice.</p>
+        <p>I don't have to explain who I am or what "leverage" means here. He already knows. The response is specific to my situation, not generic advice.</p>
         
         <p><strong>That's the difference.</strong> And it's learnable.</p>
+        
+        <h2>The 5 workflows that actually matter</h2>
+        
+        <!-- Visual: 5 Workflows -->
+        <div class="visual">
+            <img src="visual-5-workflows.png" alt="5 AI Workflows">
+        </div>
+        
+        <p>Most AI advice tries to cover everything. This playbook focuses on the 5 workflows where AI creates real, measurable value for knowledge workers.</p>
         
         <h2>What's in the playbook</h2>
         
@@ -267,11 +277,10 @@ What would make this a win regardless of outcome?</code>
             <li><span class="check">✓</span> <strong>5 high-value workflows</strong> — research, writing, planning, analysis, automation</li>
             <li><span class="check">✓</span> <strong>15 templates</strong> — copy-paste prompts I actually use daily</li>
             <li><span class="check">✓</span> <strong>Tool comparison</strong> — ChatGPT vs Claude vs Gemini (honest breakdown)</li>
-            <li><span class="check">✓</span> <strong>Setting up automations</strong> — tasks that run while you sleep</li>
             <li><span class="check">✓</span> <strong>What NOT to use AI for</strong> — where it makes you worse</li>
         </ul>
         
-        <p>18 pages. No filler. I wrote it the way I'd want to read it.</p>
+        <p>Written the way I'd want to read it. No filler.</p>
         
         <div class="author">
             <div class="author-img">
@@ -285,7 +294,7 @@ What would make this a win regardless of outcome?</code>
         
         <div class="cta">
             <div class="price">$29</div>
-            <div class="price-sub">PDF · Instant download · Free updates</div>
+            <div class="price-sub">PDF guide + quick reference card · Instant download</div>
             <a href="https://buy.stripe.com/test_4gMaEQ70o3tK8P7cbr24000" class="buy-btn">Get the Playbook</a>
             <div class="guarantee">Full refund if it's not useful. No questions.</div>
         </div>
