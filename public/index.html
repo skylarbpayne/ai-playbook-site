@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The AI Playbook</title>
+    <title>The AI Playbook — Business Kit</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -51,60 +51,79 @@
         strong, b { color: #ffffff; }
         
         .green { color: #4ade80; }
+        .red { color: #f87171; }
         
-        .pain-box {
+        .timeline {
             background: #0f0f0f;
             border: 1px solid #1a1a1a;
             border-radius: 8px;
             padding: 24px;
             margin: 32px 0;
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
         }
         
-        .pain-box p {
-            margin-bottom: 12px;
-            color: #909090;
-            font-style: italic;
-        }
+        .timeline-before { color: #909090; }
+        .timeline-after { color: #4ade80; }
+        .timeline .week { color: #555; }
         
-        .pain-box p:last-child { margin-bottom: 0; }
-        
-        /* Visual sections */
-        .visual {
-            margin: 40px 0;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .visual img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .example {
+        .ascii-box {
             background: #0d1117;
-            border-left: 3px solid #4ade80;
+            border: 1px solid #1e2a3a;
+            border-radius: 8px;
             padding: 20px;
             margin: 24px 0;
-            font-size: 0.9rem;
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            overflow-x: auto;
+            white-space: pre;
+            color: #b0b0b0;
         }
         
-        .example-label {
-            color: #4ade80;
+        .ascii-box .highlight { color: #4ade80; }
+        .ascii-box .dim { color: #555; }
+        .ascii-box .header { color: #fff; font-weight: 600; }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .comparison-side {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .comparison-side.after {
+            border-color: #1a2a1a;
+            background: #0f1a0f;
+        }
+        
+        .comparison-label {
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 600;
         }
         
-        .example code {
-            display: block;
-            color: #b0b0b0;
-            white-space: pre-wrap;
-            font-family: 'SF Mono', Monaco, Consolas, monospace;
-            font-size: 0.85rem;
-            line-height: 1.5;
+        .comparison-label.before { color: #f87171; }
+        .comparison-label.after { color: #4ade80; }
+        
+        .comparison-side ul {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-side li {
+            padding: 6px 0;
+            color: #909090;
         }
         
         .whats-in {
@@ -204,6 +223,51 @@
             color: #444;
         }
         
+        .not-for {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+        
+        .not-for p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .not-for p:last-child { margin-bottom: 0; }
+        
+        .requirement-box {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .requirement-box .icon {
+            font-size: 1.5rem;
+        }
+        
+        .requirement-box .text {
+            font-size: 0.95rem;
+        }
+        
+        .requirement-box .text strong {
+            display: block;
+            margin-bottom: 2px;
+        }
+        
+        .requirement-box .text span {
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
         footer {
             text-align: center;
             padding: 32px;
@@ -213,9 +277,48 @@
         
         footer a { color: #4ade80; }
         
-        @media (max-width: 500px) {
+        .screenshots {
+            margin: 32px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .screenshot-card {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        
+        .screenshot-card:hover {
+            border-color: #2a2a2a;
+        }
+        
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .screenshot-caption {
+            padding: 16px 20px;
+            font-size: 0.9rem;
+            color: #909090;
+        }
+        
+        .screenshot-caption strong {
+            color: #4ade80;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        @media (max-width: 600px) {
             h1 { font-size: 1.6rem; }
             .author { flex-direction: column; text-align: center; }
+            .comparison { grid-template-columns: 1fr; }
+            .ascii-box { font-size: 0.65rem; padding: 16px; }
         }
     </style>
 </head>
@@ -226,61 +329,153 @@
             <img src="banner-logo.png" alt="The AI Playbook">
         </div>
         
-        <h1>You've tried ChatGPT.<br>It didn't stick.</h1>
+        <h1>Turn ChatGPT into the assistant you were promised.</h1>
         
-        <div class="pain-box">
-            <p>"My coworkers keep talking about how much time AI saves them. I just feel like I'm doing it wrong."</p>
-            <p>"I spent an hour trying to get ChatGPT to write one email. I could've just written it myself."</p>
+        <p>You're already paying for ChatGPT Plus. You know it's capable of more. But somehow it still feels like... just a chatbot.</p>
+        
+        <div class="timeline">
+            <div class="timeline-before">
+                <span class="week">Week 1:</span>  "This is amazing! I can ask it anything!"<br>
+                <span class="week">Week 2:</span>  "Why does it keep forgetting what I told it?"<br>
+                <span class="week">Week 3:</span>  "I'm repeating myself constantly."<br>
+                <span class="week">Week 4:</span>  "This is just another thing to manage."<br>
+                <span class="week">Week 8:</span>  <em>*Only use it for occasional questions*</em>
+            </div>
         </div>
         
-        <p>If this sounds familiar, you're not bad at AI. <strong>You're just using it wrong.</strong></p>
+        <p>The pattern: ChatGPT has memory. It has scheduled tasks. It connects to Google Drive and Calendar. <strong>But nobody told you how to use them together.</strong></p>
         
-        <p>Most people treat AI like a search engine: ask a question, get an answer, move on. That's maybe 10% of what it can do.</p>
+        <p>So you're using maybe 10% of what you're paying for.</p>
         
-        <!-- Visual: Search vs Coworker -->
-        <div class="visual">
-            <img src="visual-search-vs-coworker.png" alt="Search Engine Mode vs Coworker Mode">
+        <h2>ChatGPT already has the features. You need the system.</h2>
+        
+        <div class="timeline">
+            <div class="timeline-after">
+                <span class="week">Week 1:</span>  Paste in system instructions. Set up memory.<br>
+                <span class="week">Week 2:</span>  First scheduled tasks running. Morning briefs arriving.<br>
+                <span class="week">Week 4:</span>  It prepped for my meeting without being asked<br>
+                <span class="week">Week 8:</span>  It knows my projects, my calendar, my preferences<br>
+                <span class="week">Week 12:</span> Finally feels like an actual assistant
+            </div>
         </div>
         
-        <p>The people getting real value treat AI like a <span class="green">coworker</span> — someone you onboard, give context to, and collaborate with throughout the day.</p>
+        <p><strong>The difference?</strong> A system that ties together ChatGPT's built-in features — memory, scheduled tasks, Google integrations — into workflows that actually help.</p>
         
-        <h2>What this looks like in practice</h2>
+        <h2>What you're actually buying</h2>
         
-        <p>I have an AI assistant named Palmer. He knows what I'm working on, my communication style, and the context of ongoing projects.</p>
+        <p>Not tips. Not a "prompt pack." <strong>A complete system for ChatGPT.</strong></p>
         
-        <p>So when I send him something like this:</p>
+        <div class="ascii-box"><span class="header">┌─────────────────────────────────────────────────────────┐
+│                    BUSINESS KIT                         │
+├─────────────────────────────────────────────────────────┤</span>
+│                                                         │
+│  <span class="highlight">📋 System Instructions</span>                                 │
+│     └── Copy-paste into ChatGPT's custom instructions   │
+│     └── Teaches ChatGPT how to be your assistant        │
+│     └── Memory guidelines, communication style, rules   │
+│                                                         │
+│  <span class="highlight">🔄 6 Core Workflows</span>                                     │
+│     └── Morning Brief (scheduled task)                  │
+│     └── Meeting Prep (calendar integration)             │
+│     └── Weekly Review (scheduled task)                  │
+│     └── Project Tracker (memory + docs)                 │
+│     └── Email Drafting (your voice, your context)       │
+│     └── Decision Log (memory system)                    │
+│                                                         │
+│  <span class="highlight">⚙️ Setup Guide</span>                                          │
+│     └── Memory: what to save, what to skip              │
+│     └── Scheduled tasks: timing & prompts               │
+│     └── Google integrations: Drive, Calendar, Docs      │
+│     └── Step-by-step with screenshots                   │
+│                                                         │
+│  <span class="highlight">📖 Daily Rituals Guide</span>                                  │
+│     └── How to start your day with ChatGPT              │
+│     └── End-of-day handoff ritual                       │
+│     └── Weekly rhythm that compounds                    │
+│                                                         │
+└─────────────────────────────────────────────────────────┘</div>
         
-        <div class="example">
-            <div class="example-label">Real message from this morning</div>
-            <code>Meeting with CTO in an hour about my role.
-Feeling like I can't get enough leverage.
-What would make this a win regardless of outcome?</code>
+        <h2>The shift</h2>
+        
+        <div class="comparison">
+            <div class="comparison-side">
+                <div class="comparison-label before">❌ ChatGPT as chatbot</div>
+                <ul>
+                    <li>Open when you have a question</li>
+                    <li>Repeat context every time</li>
+                    <li>Never initiates anything</li>
+                    <li>Doesn't know your work</li>
+                </ul>
+            </div>
+            <div class="comparison-side after">
+                <div class="comparison-label after">✓ ChatGPT as assistant</div>
+                <ul>
+                    <li>Morning brief waiting for you</li>
+                    <li>Remembers your projects & people</li>
+                    <li>Preps for meetings automatically</li>
+                    <li>Context compounds over time</li>
+                </ul>
+            </div>
         </div>
         
-        <p>I don't have to explain who I am or what "leverage" means here. He already knows. The response is specific to my situation, not generic advice.</p>
+        <h2>Here's what it looks like</h2>
         
-        <p><strong>That's the difference.</strong> And it's learnable.</p>
+        <p>Real screenshots from a configured ChatGPT. This is what you get after 30 minutes of setup:</p>
         
-        <h2>The 5 workflows that actually matter</h2>
-        
-        <!-- Visual: 5 Workflows -->
-        <div class="visual">
-            <img src="visual-5-workflows.png" alt="5 AI Workflows">
+        <div class="screenshots">
+            <div class="screenshot-card">
+                <img src="screenshots/8.27.42_PM.png" alt="TODO list generation">
+                <div class="screenshot-caption">
+                    <strong>Daily priorities</strong> — One message generates your complete task list, organized by category and priority
+                </div>
+            </div>
+            
+            <div class="screenshot-card">
+                <img src="screenshots/8.27.17_PM.png" alt="Highest leverage analysis">
+                <div class="screenshot-caption">
+                    <strong>Strategic thinking</strong> — Instant analysis based on YOUR goals, deadlines, and patterns
+                </div>
+            </div>
+            
+            <div class="screenshot-card">
+                <img src="screenshots/8.00.01_PM.png" alt="Morning brief scheduled">
+                <div class="screenshot-caption">
+                    <strong>Automated workflows</strong> — Morning brief runs automatically, knows your calendar and priorities
+                </div>
+            </div>
+            
+            <div class="screenshot-card">
+                <img src="screenshots/7.31.46_PM.png" alt="Custom instructions output">
+                <div class="screenshot-caption">
+                    <strong>Personalized setup</strong> — The onboarding generates your custom instructions automatically
+                </div>
+            </div>
         </div>
         
-        <p>Most AI advice tries to cover everything. This playbook focuses on the 5 workflows where AI creates real, measurable value for knowledge workers.</p>
+        <h2>What you need</h2>
         
-        <h2>What's in the playbook</h2>
+        <div class="requirement-box">
+            <div class="icon">✓</div>
+            <div class="text">
+                <strong>ChatGPT Plus ($20/mo)</strong>
+                <span>Uses features you're already paying for: memory, scheduled tasks, App Directory integrations. No additional tools required.</span>
+            </div>
+        </div>
         
-        <ul class="whats-in">
-            <li><span class="check">✓</span> <strong>The onboarding conversation</strong> — give AI context so it stops being generic</li>
-            <li><span class="check">✓</span> <strong>5 high-value workflows</strong> — research, writing, planning, analysis, automation</li>
-            <li><span class="check">✓</span> <strong>15 templates</strong> — copy-paste prompts I actually use daily</li>
-            <li><span class="check">✓</span> <strong>Tool comparison</strong> — ChatGPT vs Claude vs Gemini (honest breakdown)</li>
-            <li><span class="check">✓</span> <strong>What NOT to use AI for</strong> — where it makes you worse</li>
-        </ul>
+        <h2>Honest about the work</h2>
         
-        <p>Written the way I'd want to read it. No filler.</p>
+        <p><strong>Time investment:</strong> 30-60 minutes to set up. Then small adjustments as you use it.</p>
+        
+        <p><strong>What you'll bump into:</strong> ChatGPT will make mistakes early as it learns your preferences. You'll tweak the scheduled task timings. Some workflows will fit better than others.</p>
+        
+        <p><strong>What you get:</strong> ChatGPT finally working the way you imagined when you signed up for Plus. An assistant that actually knows your work and shows up with useful things.</p>
+        
+        <div class="not-for">
+            <p><strong style="color: #888;">This is not for everyone.</strong></p>
+            <p>✗ If you don't have ChatGPT Plus</p>
+            <p>✗ If you just want occasional AI queries</p>
+            <p>✗ If you're not willing to spend an hour on setup</p>
+        </div>
         
         <div class="author">
             <div class="author-img">
@@ -288,14 +483,14 @@ What would make this a win regardless of outcome?</code>
             </div>
             <div class="author-text">
                 <strong>Skylar Payne</strong>
-                10 years building AI systems. This is the playbook I actually use.
+                10 years building AI systems. This is how I actually use ChatGPT every day.
             </div>
         </div>
         
         <div class="cta">
-            <div class="price">$29</div>
-            <div class="price-sub">PDF guide + quick reference card · Instant download</div>
-            <a href="https://buy.stripe.com/test_4gMaEQ70o3tK8P7cbr24000" class="buy-btn">Get the Playbook</a>
+            <div class="price">$149</div>
+            <div class="price-sub">Complete system for ChatGPT · Instant download · Works with your existing Plus account</div>
+            <a href="https://buy.stripe.com/test_4gMaEQ70o3tK8P7cbr24000" class="buy-btn">Get the Business Kit</a>
             <div class="guarantee">Full refund if it's not useful. No questions.</div>
         </div>
         

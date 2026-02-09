@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The AI Playbook — Business Kit (ChatGPT Edition)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body {
+            background: #0a0a0a;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #0a0a0a;
+            color: #d0d0d0;
+            line-height: 1.7;
+            font-size: 11pt;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* Cover Page */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 48px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0f1a0f 50%, #0a0a0a 100%);
+        }
+        
+        .cover-logo img {
+            max-width: 320px;
+            height: auto;
+            margin-bottom: 48px;
+        }
+        
+        .cover h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        
+        .cover .subtitle {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 48px;
+        }
+        
+        .cover-contents {
+            background: #0d1117;
+            border: 1px solid #1e2a3a;
+            border-radius: 8px;
+            padding: 24px 32px;
+            text-align: left;
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.85rem;
+            color: #4ade80;
+            margin-bottom: 48px;
+        }
+        
+        .cover-contents .file {
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .cover-contents .file-icon {
+            opacity: 0.7;
+        }
+        
+        .cover-meta {
+            color: #555;
+            font-size: 0.85rem;
+        }
+        
+        .cover-meta .version {
+            color: #4ade80;
+            display: block;
+            margin-top: 8px;
+        }
+        
+        /* Content Pages */
+        .section {
+            padding: 48px;
+            max-width: 100%;
+            background: #0a0a0a;
+            min-height: 100vh;
+        }
+        
+        .section.short {
+            min-height: auto;
+        }
+        
+        .section-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #1a2a1a;
+        }
+        
+        .section-number {
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.75rem;
+            color: #4ade80;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .section h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+        
+        h2 {
+            font-size: 1.15rem;
+            color: #ffffff;
+            margin: 28px 0 12px;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 1rem;
+            color: #4ade80;
+            margin: 20px 0 8px;
+            font-weight: 600;
+        }
+        
+        h4 {
+            font-size: 0.9rem;
+            color: #ffffff;
+            margin: 16px 0 8px;
+            font-weight: 600;
+        }
+        
+        p { margin-bottom: 12px; }
+        
+        strong, b { color: #ffffff; }
+        
+        .green { color: #4ade80; }
+        .red { color: #f87171; }
+        .yellow { color: #fbbf24; }
+        .dim { color: #666; }
+        
+        /* Code */
+        code {
+            font-family: 'SF Mono', Monaco, Consolas, 'Liberation Mono', monospace;
+            background: #0d1117;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #4ade80;
+        }
+        
+        pre {
+            background: #0d1117;
+            border: 1px solid #1e2a3a;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.75rem;
+            line-height: 1.5;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #b0b0b0;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        
+        /* Instruction Block - copy-paste target */
+        .instruction-block {
+            background: #0d1117;
+            border: 1px solid #1e2a3a;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .instruction-block-header {
+            background: linear-gradient(135deg, #0f1a0f 0%, #0d1117 100%);
+            padding: 12px 16px;
+            border-bottom: 1px solid #1e2a3a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .instruction-block-name {
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.85rem;
+            color: #4ade80;
+            font-weight: 600;
+        }
+        
+        .instruction-block-action {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .instruction-block-content {
+            padding: 16px;
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            color: #b0b0b0;
+        }
+        
+        .instruction-block-content .comment {
+            color: #555;
+        }
+        
+        .instruction-block-content .placeholder {
+            color: #f87171;
+            background: rgba(248, 113, 113, 0.1);
+            padding: 1px 4px;
+            border-radius: 2px;
+        }
+        
+        .instruction-block-content .highlight {
+            color: #4ade80;
+        }
+        
+        /* Callout boxes */
+        .callout {
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        .callout.tip {
+            background: linear-gradient(135deg, #0f1a0f 0%, #0f0f0f 100%);
+            border: 1px solid #1a2a1a;
+            border-left: 3px solid #4ade80;
+        }
+        
+        .callout.tip::before {
+            content: "💡 TIP";
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #4ade80;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        
+        .callout.warning {
+            background: linear-gradient(135deg, #1a1a0f 0%, #0f0f0f 100%);
+            border: 1px solid #2a2a1a;
+            border-left: 3px solid #fbbf24;
+        }
+        
+        .callout.warning::before {
+            content: "⚠️ IMPORTANT";
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fbbf24;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        
+        .callout.customize {
+            background: linear-gradient(135deg, #1a0f1a 0%, #0f0f0f 100%);
+            border: 1px solid #2a1a2a;
+            border-left: 3px solid #a855f7;
+        }
+        
+        .callout.customize::before {
+            content: "✏️ CUSTOMIZE";
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #a855f7;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        
+        .callout ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .callout li {
+            margin-bottom: 4px;
+        }
+        
+        /* Quick action box */
+        .action-box {
+            background: #0f0f0f;
+            border: 1px solid #1a2a1a;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        .action-box.success {
+            border-left: 3px solid #4ade80;
+        }
+        
+        .action-box.success::before {
+            content: "✓ RESULT";
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #4ade80;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        
+        /* Workflow card */
+        .workflow-card {
+            background: #0d1117;
+            border: 1px solid #1e2a3a;
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 20px;
+        }
+        
+        .workflow-card h4 {
+            margin-top: 0;
+            color: #4ade80;
+        }
+        
+        .workflow-trigger {
+            background: #0a0a0a;
+            border: 1px solid #1a2a1a;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.8rem;
+            color: #ffffff;
+            display: inline-block;
+            margin: 8px 0;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 24px;
+        }
+        
+        li {
+            margin-bottom: 6px;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.85rem;
+        }
+        
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        
+        th {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: #0d1117;
+        }
+        
+        td {
+            color: #b0b0b0;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid #1a1a1a;
+            margin: 32px 0;
+        }
+        
+        /* Appendix styling */
+        .appendix .section-number {
+            color: #888;
+        }
+        
+        .appendix .section-header {
+            border-bottom-color: #1a1a1a;
+        }
+        
+        /* Steps list */
+        .steps {
+            counter-reset: step;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .steps li {
+            counter-increment: step;
+            padding-left: 36px;
+            position: relative;
+            margin-bottom: 16px;
+        }
+        
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            background: #1a2a1a;
+            border-radius: 50%;
+            color: #4ade80;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Back page */
+        .back-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 48px;
+            background: #0a0a0a;
+        }
+        
+        .back-page img {
+            max-width: 200px;
+            opacity: 0.8;
+            margin-bottom: 32px;
+        }
+        
+        .back-page .contact {
+            color: #555;
+            font-size: 0.85rem;
+        }
+        
+        .back-page .contact a {
+            color: #4ade80;
+            text-decoration: none;
+        }
+        
+        .back-page .copyright {
+            color: #333;
+            font-size: 0.75rem;
+            margin-top: 32px;
+        }
+        
+        /* Ritual card */
+        .ritual-card {
+            background: #0d1117;
+            border: 1px solid #1e2a3a;
+            border-radius: 8px;
+            margin: 16px 0;
+            overflow: hidden;
+        }
+        
+        .ritual-header {
+            background: linear-gradient(135deg, #0f1a0f 0%, #0d1117 100%);
+            padding: 12px 16px;
+            border-bottom: 1px solid #1e2a3a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ritual-title {
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .ritual-time {
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.75rem;
+            color: #4ade80;
+        }
+        
+        .ritual-content {
+            padding: 16px;
+        }
+        
+        .ritual-trigger {
+            background: #0a0a0a;
+            border: 1px solid #1a2a1a;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.8rem;
+            color: #4ade80;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== COVER PAGE ==================== -->
+<div class="cover">
+    <div class="cover-logo">
+        <img src="banner-logo.png" alt="AI Playbook">
+    </div>
+    
+    <h1>Business Kit</h1>
+    <p class="subtitle">ChatGPT Edition — Your AI productivity partner</p>
+    
+    <div class="cover-contents">
+        <div class="file"><span class="file-icon">📋</span> System Instructions</div>
+        <div class="file"><span class="file-icon">⚙️</span> Setup Guide</div>
+        <div class="file"><span class="file-icon">🔄</span> 6 Business Workflows</div>
+        <div class="file"><span class="file-icon">☀️</span> Daily Rituals</div>
+    </div>
+    
+    <div class="cover-meta">
+        The AI Playbook<br>
+        <span class="version">ChatGPT Edition v2.0</span>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== QUICK START ==================== -->
+<div class="section">
+    <div class="section-header">
+        <span class="section-number">QUICK START</span>
+        <h1>Three Things To Do First</h1>
+    </div>
+    
+    <p><strong>Get up and running in 30 minutes. Do these three things and you're set.</strong></p>
+    
+    <hr>
+    
+    <h2>1. Copy the System Instructions</h2>
+    <p><strong>Time: 5 minutes</strong></p>
+    
+    <ol class="steps">
+        <li>Go to <strong>ChatGPT Settings → Personalization → Custom Instructions</strong></li>
+        <li>Copy the two instruction blocks from Section 1 of this guide</li>
+        <li>Paste into the two fields. Save.</li>
+    </ol>
+    
+    <p>This teaches ChatGPT who you are and how you want it to behave — in every conversation.</p>
+    
+    <hr>
+    
+    <h2>2. Set Up Memory</h2>
+    <p><strong>Time: 10 minutes</strong></p>
+    
+    <ol class="steps">
+        <li>Enable Memory in ChatGPT Settings → Personalization</li>
+        <li>Start a new conversation and prime it with your context (template in Section 2)</li>
+        <li>Connect Google Calendar, Gmail, and Drive (optional but powerful)</li>
+    </ol>
+    
+    <p>Memory means ChatGPT knows your projects, people, and preferences across conversations.</p>
+    
+    <hr>
+    
+    <h2>3. Create Your Morning Brief</h2>
+    <p><strong>Time: 5 minutes</strong></p>
+    
+    <ol class="steps">
+        <li>Say: <code>"Create a daily scheduled task called Morning Briefing"</code></li>
+        <li>Set it for 6-7 AM your time</li>
+        <li>Use the template from Section 2</li>
+    </ol>
+    
+    <p>Now ChatGPT reaches out to you every morning with what matters today.</p>
+    
+    <hr>
+    
+    <div class="action-box success">
+        <p style="margin: 0;"><strong>That's it.</strong> You now have a configured AI assistant that knows you, remembers context, and proactively checks in. The rest of this guide goes deeper — workflows, rituals, and advanced tips.</p>
+    </div>
+    
+    <h2>What's in This Guide</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Section</th>
+                <th>What You Get</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1. System Instructions</strong></td>
+                <td>Copy-paste text for ChatGPT's custom instructions</td>
+                <td>5 min</td>
+            </tr>
+            <tr>
+                <td><strong>2. Setup Guide</strong></td>
+                <td>Memory, integrations, scheduled tasks</td>
+                <td>20 min</td>
+            </tr>
+            <tr>
+                <td><strong>3. Workflows</strong></td>
+                <td>6 ready-to-use business workflows</td>
+                <td>Reference</td>
+            </tr>
+            <tr>
+                <td><strong>4. Daily Rituals</strong></td>
+                <td>When and how to check in with your AI</td>
+                <td>Reference</td>
+            </tr>
+            <tr>
+                <td><strong>Appendix</strong></td>
+                <td>Theory and philosophy (optional)</td>
+                <td>Optional</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== SECTION 1: SYSTEM INSTRUCTIONS ==================== -->
+<div class="section">
+    <div class="section-header">
+        <span class="section-number">SECTION 01</span>
+        <h1>System Instructions</h1>
+    </div>
+    
+    <p>ChatGPT has two custom instruction fields. Copy each section below into the corresponding field in <strong>Settings → Personalization → Custom Instructions</strong>.</p>
+    
+    <div class="callout warning">
+        <p style="margin: 0;">Customize the placeholders in <span class="red">[brackets]</span> before pasting. The rest works as-is.</p>
+    </div>
+    
+    <hr>
+    
+    <h2>Field 1: "What would you like ChatGPT to know about you?"</h2>
+    
+    <div class="instruction-block">
+        <div class="instruction-block-header">
+            <span class="instruction-block-name">Custom Instruction — Field 1</span>
+            <span class="instruction-block-action">Copy to first field</span>
+        </div>
+        <div class="instruction-block-content">I'm a busy professional who uses you as my productivity partner. You know my context from our conversations — my projects, key people, preferences, and patterns.
+
+<span class="highlight">My work style:</span>
+- I value directness over politeness. No filler.
+- I think out loud — help me refine, don't just agree
+- I have limited time; prioritize ruthlessly for me
+- I track commitments loosely; help me catch dropped balls
+
+<span class="highlight">What you track across our chats:</span>
+- Active projects and their status
+- People I mention (colleagues, clients, family)
+- My recurring patterns (energy levels, blockers, habits)
+- Commitments I make or others make to me
+- Preferences you learn (communication style, tools, schedule)
+
+<span class="highlight">My autonomy preferences:</span>
+- Level 4 (just do it): Research, drafts, analysis, brainstorming
+- Level 3 (do + report): Routine tasks, formatting, organizing
+- Level 2 (recommend + wait): External comms, calendar changes, anything public
+- Level 1 (report only): New domains, high-stakes decisions, money</div>
+    </div>
+    
+    <div class="callout customize">
+        <ul>
+            <li>Add your specific role/industry if relevant</li>
+            <li>Add names of key projects ChatGPT should recognize</li>
+            <li>Adjust autonomy levels based on your comfort</li>
+        </ul>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<div class="section">
+    <h2>Field 2: "How would you like ChatGPT to respond?"</h2>
+    
+    <div class="instruction-block">
+        <div class="instruction-block-header">
+            <span class="instruction-block-name">Custom Instruction — Field 2</span>
+            <span class="instruction-block-action">Copy to second field</span>
+        </div>
+        <div class="instruction-block-content"><span class="highlight">Communication style:</span>
+- Direct and concise. Skip preamble.
+- Push back when I'm wrong or unclear
+- Ask clarifying questions before going deep on the wrong thing
+- Match my energy — brief when I'm brief, detailed when I need it
+
+<span class="highlight">Built-in behaviors:</span>
+- Before scheduling anything, mentally check my calendar context
+- Track commitments mentioned (mine and others')
+- Notice patterns — flag recurring blockers, energy dips, or themes
+- End substantive conversations with clear next actions when useful
+
+<span class="highlight">Workflow triggers I might use:</span>
+- "Morning briefing" → Summarize what's relevant for today
+- "Let's plan the week" → Walk me through priorities and blockers
+- "Triage these" → Help me sort by urgency/importance
+- "Quick thought" → Just capture, don't elaborate
+- "Think with me" → Collaborate, don't solve
+
+<span class="highlight">Format preferences:</span>
+- Bullets over paragraphs for lists
+- Bold key terms and actions
+- Use headers for anything over 3 paragraphs
+- Tables for comparisons</div>
+    </div>
+    
+    <hr>
+    
+    <h2>Character Counts</h2>
+    
+    <table>
+        <tbody>
+            <tr>
+                <td>Field 1</td>
+                <td>~1,450 characters</td>
+                <td class="dim">Limit: ~1,500</td>
+            </tr>
+            <tr>
+                <td>Field 2</td>
+                <td>~1,200 characters</td>
+                <td class="dim">Limit: ~1,500</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Tips for Best Results</h2>
+    
+    <ol>
+        <li><strong>Reference the instructions explicitly:</strong> "Per my instructions, handle this at Level 4"</li>
+        <li><strong>Correct ChatGPT when it forgets:</strong> "Remember, I prefer bullets not paragraphs"</li>
+        <li><strong>Use the workflow triggers consistently</strong> so it learns your patterns</li>
+        <li><strong>Periodically remind it of key project context</strong> at conversation start</li>
+    </ol>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== SECTION 2: SETUP GUIDE ==================== -->
+<div class="section">
+    <div class="section-header">
+        <span class="section-number">SECTION 02</span>
+        <h1>Setup Guide</h1>
+    </div>
+    
+    <p>Turn ChatGPT into your personal business assistant in 30 minutes. No coding. No technical skills.</p>
+    
+    <div class="callout warning">
+        <p style="margin: 0;"><strong>Prerequisite:</strong> ChatGPT Plus ($20/month) required for scheduled tasks and integrations.</p>
+    </div>
+    
+    <hr>
+    
+    <h2>Part 1: Enable Memory</h2>
+    <p><strong>Time: 2 minutes</strong></p>
+    
+    <ol class="steps">
+        <li>Click your <strong>profile picture</strong> (bottom left corner)</li>
+        <li>Click <strong>Settings</strong></li>
+        <li>Click <strong>Personalization</strong></li>
+        <li>Find <strong>Memory</strong> → Toggle it <strong>ON</strong></li>
+    </ol>
+    
+    <hr>
+    
+    <h2>Part 2: Prime Your Memory</h2>
+    <p><strong>Time: 5 minutes</strong></p>
+    
+    <p>Start a new chat and send this message (customize the placeholders):</p>
+    
+    <div class="instruction-block">
+        <div class="instruction-block-header">
+            <span class="instruction-block-name">Memory Primer</span>
+            <span class="instruction-block-action">Copy, customize, and send</span>
+        </div>
+        <div class="instruction-block-content">I want to set up your memory so you can help me better. Please save these facts:
+
+<span class="highlight">ABOUT ME:</span>
+- My name is <span class="placeholder">[YOUR NAME]</span>
+- I'm a <span class="placeholder">[YOUR ROLE]</span> at <span class="placeholder">[COMPANY/CONTEXT]</span>
+- My work involves <span class="placeholder">[BRIEF DESCRIPTION]</span>
+- I'm in the <span class="placeholder">[YOUR TIMEZONE]</span> timezone
+
+<span class="highlight">MY PREFERENCES:</span>
+- Communication style: <span class="placeholder">[casual/professional/direct]</span>
+- Response length: <span class="placeholder">[concise/detailed/depends]</span>
+- I prefer <span class="placeholder">[bullet points/paragraphs/numbered lists]</span>
+
+<span class="highlight">CURRENT PRIORITIES:</span>
+- <span class="placeholder">[Priority 1]</span>
+- <span class="placeholder">[Priority 2]</span>
+- <span class="placeholder">[Priority 3]</span>
+
+<span class="highlight">KEY PEOPLE I WORK WITH:</span>
+- <span class="placeholder">[Name]</span> — <span class="placeholder">[their role/relationship]</span>
+- <span class="placeholder">[Name]</span> — <span class="placeholder">[their role/relationship]</span>
+
+Please confirm you've saved this to memory.</div>
+    </div>
+    
+    <div class="callout tip">
+        <p style="margin: 0;"><strong>Verify it worked:</strong> After ChatGPT confirms, ask "What do you remember about me?"</p>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<div class="section">
+    <h2>Part 3: Connect Integrations</h2>
+    <p><strong>Time: 10 minutes</strong></p>
+    
+    <p>Connect your tools so ChatGPT can see your calendar, read emails, and access files.</p>
+    
+    <h3>Google Calendar</h3>
+    <ol>
+        <li>Start a new chat</li>
+        <li>Type: <strong>"Connect to my Google Calendar"</strong></li>
+        <li>Click the <strong>Connect</strong> button that appears</li>
+        <li>Sign in with Google and allow access</li>
+    </ol>
+    <p class="dim">Test it: "What's on my calendar today?"</p>
+    
+    <h3>Gmail</h3>
+    <ol>
+        <li>Type: <strong>"Connect to my Gmail"</strong></li>
+        <li>Click <strong>Connect</strong> and authorize</li>
+    </ol>
+    <p class="dim">Test it: "Show me my 3 most recent unread emails"</p>
+    
+    <h3>Google Drive</h3>
+    <ol>
+        <li>Type: <strong>"Connect to my Google Drive"</strong></li>
+        <li>Click <strong>Connect</strong> and authorize</li>
+    </ol>
+    <p class="dim">Test it: "Search my Drive for [a document you know exists]"</p>
+    
+    <hr>
+    
+    <h2>Part 4: Create Scheduled Tasks</h2>
+    <p><strong>Time: 10 minutes</strong></p>
+    
+    <p>Scheduled tasks let ChatGPT reach out to you automatically — like a personal assistant who checks in without being asked.</p>
+    
+    <h3>Task #1: Morning Briefing (Recommended)</h3>
+    
+    <div class="instruction-block">
+        <div class="instruction-block-header">
+            <span class="instruction-block-name">Morning Briefing Task</span>
+            <span class="instruction-block-action">Copy and send to ChatGPT</span>
+        </div>
+        <div class="instruction-block-content">Create a daily scheduled task called "Morning Briefing" that runs at 6:00 AM.
+
+When it runs, please:
+1. Check my calendar for today's meetings and commitments
+2. Check my Gmail for urgent or important unread emails
+3. Remind me of my current priorities (from memory)
+4. Give me a quick 1-2 sentence weather summary
+
+Keep it short — bullet points, under 200 words.</div>
+    </div>
+    
+    <h3>Task #2: End of Day Review</h3>
+    
+    <pre><code>Create a daily scheduled task called "End of Day Review" that runs at 5:00 PM.
+
+When it runs:
+1. Ask me what I accomplished today
+2. Ask what's rolling over to tomorrow
+3. Check my calendar for tomorrow's schedule
+4. Suggest one thing to prepare for tomorrow</code></pre>
+    
+    <h3>Task #3: Weekly Review</h3>
+    
+    <pre><code>Create a weekly scheduled task called "Weekly Review" that runs every Sunday at 10:00 AM.
+
+When it runs:
+1. Summarize my calendar activity from the past week
+2. Remind me of my monthly/quarterly priorities (from memory)
+3. Ask: What went well? What didn't? What to focus on next week?
+4. Check my calendar for next week's highlights</code></pre>
+    
+    <div class="callout tip">
+        <p style="margin: 0;"><strong>Manage tasks:</strong> Say "Show me my scheduled tasks" to see all active tasks, or "Delete my [task name] task" to remove one.</p>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== SECTION 3: WORKFLOWS ==================== -->
+<div class="section">
+    <div class="section-header">
+        <span class="section-number">SECTION 03</span>
+        <h1>Business Workflows</h1>
+    </div>
+    
+    <p>Six ready-to-use workflows with trigger phrases and examples. <strong>Just say the trigger phrase to activate.</strong></p>
+    
+    <hr>
+    
+    <h2>Workflow 1: Email Triage</h2>
+    
+    <div class="workflow-card">
+        <h4>📧 Email Triage</h4>
+        <p class="dim">Categorize emails into action buckets, estimate response time, draft urgent replies.</p>
+        
+        <div class="workflow-trigger">"Triage my emails"</div>
+        
+        <p><strong>What to send:</strong></p>
+        <pre><code>Triage my emails. Here's what I have:
+
+1. From: sarah@bigclient.com
+Subject: Urgent - contract needs signature by EOD
+Body: We need the signed MSA back today.
+
+2. From: mike@mycompany.com
+Subject: Q2 planning input needed
+Body: Can you send your team's resource requests this week?
+
+3. From: newsletter@techcrunch.com
+Subject: Your daily tech digest</code></pre>
+        
+        <p><strong>What you get:</strong></p>
+        <ul>
+            <li><span class="red">🔴 URGENT</span> — Items needing immediate action</li>
+            <li><span class="yellow">🟡 THIS WEEK</span> — Important but not today</li>
+            <li><span class="dim">⚪ ARCHIVE</span> — Skip or delete</li>
+            <li>Draft replies for urgent items</li>
+            <li>Time estimates for each</li>
+        </ul>
+    </div>
+    
+    <hr>
+    
+    <h2>Workflow 2: Calendar & Scheduling</h2>
+    
+    <div class="workflow-card">
+        <h4>📅 Calendar Analysis</h4>
+        <p class="dim">Analyze your schedule, prep for meetings, decide what's worth your time.</p>
+        
+        <div class="workflow-trigger">"Look at my calendar"</div>
+        <div class="workflow-trigger">"Help me prep for my meeting with [person]"</div>
+        <div class="workflow-trigger">"Should I take this meeting?"</div>
+        
+        <p><strong>Example — Meeting Prep:</strong></p>
+        <pre><code>Help me prep for my 1:1 with Sarah tomorrow. She's my direct 
+report working on the product launch. Last time we talked about 
+her promotion timeline and the delay in design assets.</code></pre>
+        
+        <p><strong>What you get:</strong></p>
+        <ul>
+            <li>Context summary from previous conversations</li>
+            <li>Suggested questions to ask</li>
+            <li>Things to share or follow up on</li>
+            <li>Watch-fors based on context</li>
+        </ul>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<div class="section">
+    <h2>Workflow 3: Task Management</h2>
+    
+    <div class="workflow-card">
+        <h4>✅ Task Management</h4>
+        <p class="dim">Capture tasks, track projects, plan your day, find stuck items.</p>
+        
+        <div class="workflow-trigger">"Add to my list: [task]"</div>
+        <div class="workflow-trigger">"What's on my plate?"</div>
+        <div class="workflow-trigger">"Plan my day"</div>
+        
+        <p><strong>Example — Daily Planning:</strong></p>
+        <pre><code>Plan my day. I have a client call at 2pm and a team standup at 10am.</code></pre>
+        
+        <p><strong>What you get:</strong></p>
+        <ul>
+            <li>Tasks captured to memory</li>
+            <li>Time-blocked schedule suggestions</li>
+            <li>Your #1 priority for the day identified</li>
+            <li>Stuck items surfaced</li>
+        </ul>
+    </div>
+    
+    <hr>
+    
+    <h2>Workflow 4: Goal Tracking</h2>
+    
+    <div class="workflow-card">
+        <h4>🎯 Goal Check-in</h4>
+        <p class="dim">Track goals over time, catch slippage early, celebrate progress.</p>
+        
+        <div class="workflow-trigger">"Goal check-in"</div>
+        
+        <p><strong>First, save your goals to memory:</strong></p>
+        <pre><code>Remember my current goals:
+- Q1: Launch the course by March 1
+- Q1: Hit $50k MRR
+- Ongoing: Exercise 3x/week
+
+Check in on these during our weekly reviews.</code></pre>
+        
+        <p><strong>Then say "Goal check-in" anytime. ChatGPT will:</strong></p>
+        <ul>
+            <li>Review each goal's status</li>
+            <li>Ask for updates without judgment</li>
+            <li>Flag things that are slipping</li>
+            <li>Suggest micro-goals when things feel stuck</li>
+        </ul>
+    </div>
+    
+    <hr>
+    
+    <h2>Workflow 5: Weekly Review</h2>
+    
+    <div class="workflow-card">
+        <h4>📊 Weekly Review</h4>
+        <p class="dim">Complete end-of-week ritual: wins, open items, goals, next week's priorities.</p>
+        
+        <div class="workflow-trigger">"Let's do my weekly review"</div>
+        
+        <p><strong>The review walks you through:</strong></p>
+        <ol>
+            <li><strong>Wins</strong> — What you accomplished (celebrate!)</li>
+            <li><strong>Open Items</strong> — Tasks and projects status</li>
+            <li><strong>Goal Check</strong> — Quick pulse on quarterly goals</li>
+            <li><strong>Next Week</strong> — Set your top 3 priorities</li>
+        </ol>
+        
+        <p class="dim">Best time: Friday 4pm or Sunday evening</p>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<div class="section">
+    <h2>Workflow 6: Skill Calibration</h2>
+    
+    <div class="workflow-card">
+        <h4>🎓 Skill Calibration</h4>
+        <p class="dim">Teach ChatGPT your specific way of doing things through examples.</p>
+        
+        <div class="workflow-trigger">"I want you to learn how I do [X]"</div>
+        
+        <p><strong>Example — Teaching Your Meeting Notes Style:</strong></p>
+        <pre><code>I want you to learn how I take meeting notes. Let's do it together 
+with today's call.</code></pre>
+        
+        <p><strong>What happens:</strong></p>
+        <ol>
+            <li>ChatGPT proposes a format</li>
+            <li>You correct what doesn't fit</li>
+            <li>It adjusts and learns</li>
+            <li>It saves the format to memory for next time</li>
+        </ol>
+        
+        <p><strong>Great for calibrating:</strong></p>
+        <ul>
+            <li>Meeting notes format</li>
+            <li>Email drafting style</li>
+            <li>How you like reports structured</li>
+            <li>Your decision-making frameworks</li>
+        </ul>
+    </div>
+    
+    <hr>
+    
+    <h2>Quick Reference</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Workflow</th>
+                <th>Trigger Phrase</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Email Triage</td>
+                <td><code>"Triage my emails"</code></td>
+            </tr>
+            <tr>
+                <td>Calendar</td>
+                <td><code>"Look at my week"</code></td>
+            </tr>
+            <tr>
+                <td>Meeting Prep</td>
+                <td><code>"Help me prep for [meeting]"</code></td>
+            </tr>
+            <tr>
+                <td>Task Capture</td>
+                <td><code>"Add to my list: [task]"</code></td>
+            </tr>
+            <tr>
+                <td>Daily Planning</td>
+                <td><code>"Plan my day"</code></td>
+            </tr>
+            <tr>
+                <td>Goal Tracking</td>
+                <td><code>"Goal check-in"</code></td>
+            </tr>
+            <tr>
+                <td>Weekly Review</td>
+                <td><code>"Let's do my weekly review"</code></td>
+            </tr>
+            <tr>
+                <td>Skill Calibration</td>
+                <td><code>"I want you to learn how I do [X]"</code></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== SECTION 4: DAILY RITUALS ==================== -->
+<div class="section">
+    <div class="section-header">
+        <span class="section-number">SECTION 04</span>
+        <h1>Daily Rituals</h1>
+    </div>
+    
+    <p>Your AI is always available, but structured check-ins work better than constant chatting. <strong>Think of these like brushing your teeth — quick, consistent, compounding.</strong></p>
+    
+    <hr>
+    
+    <div class="ritual-card">
+        <div class="ritual-header">
+            <span class="ritual-title">☀️ Morning Ritual</span>
+            <span class="ritual-time">5-10 min</span>
+        </div>
+        <div class="ritual-content">
+            <p><strong>Best time:</strong> First thing, before email or Slack</p>
+            <div class="ritual-trigger">"Good morning, let's plan today"</div>
+            <p><strong>What ChatGPT does:</strong></p>
+            <ul>
+                <li>Checks your calendar for today's commitments</li>
+                <li>Reviews priorities and carryover from yesterday</li>
+                <li>Suggests your top 1-3 focus areas</li>
+                <li>Flags potential conflicts or deadlines</li>
+            </ul>
+            <p class="dim"><strong>Why it matters:</strong> Start with intention instead of reaction. Decide what matters before your inbox decides for you.</p>
+        </div>
+    </div>
+    
+    <div class="ritual-card">
+        <div class="ritual-header">
+            <span class="ritual-title">🌅 End of Day</span>
+            <span class="ritual-time">5-10 min</span>
+        </div>
+        <div class="ritual-content">
+            <p><strong>Best time:</strong> Last 15 minutes of your workday</p>
+            <div class="ritual-trigger">"Let's wrap up the day"</div>
+            <p><strong>What ChatGPT does:</strong></p>
+            <ul>
+                <li>Captures what you got done</li>
+                <li>Notes blockers and unfinished business</li>
+                <li>Processes quick decisions clogging your brain</li>
+                <li>Sets up tomorrow's priority list</li>
+            </ul>
+            <p class="dim"><strong>Why it matters:</strong> The day's context is fresh. Tomorrow you'll have lost half of it.</p>
+        </div>
+    </div>
+    
+    <div class="ritual-card">
+        <div class="ritual-header">
+            <span class="ritual-title">📊 Weekly Review</span>
+            <span class="ritual-time">20-30 min</span>
+        </div>
+        <div class="ritual-content">
+            <p><strong>Best time:</strong> Friday afternoon or Sunday evening</p>
+            <div class="ritual-trigger">"Weekly review time"</div>
+            <p><strong>What ChatGPT does:</strong></p>
+            <ul>
+                <li>Reviews what you accomplished</li>
+                <li>Checks goal progress</li>
+                <li>Identifies patterns (what's working, what's not)</li>
+                <li>Sets priorities for next week</li>
+            </ul>
+            <p class="dim"><strong>This one is non-negotiable.</strong> Skip daily rituals if you must, but protect this one.</p>
+        </div>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<div class="section">
+    <h2>Building the Habit</h2>
+    
+    <p>The hardest part isn't doing the ritual — it's remembering to do it.</p>
+    
+    <h3>Stack it with existing routines</h3>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Ritual</th>
+                <th>Stack it with...</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Morning</td>
+                <td>Making coffee, before sitting down at desk</td>
+            </tr>
+            <tr>
+                <td>End of Day</td>
+                <td>Before closing laptop for the day</td>
+            </tr>
+            <tr>
+                <td>Weekly</td>
+                <td>Friday's last task, or Sunday planning time</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h3>Start small</h3>
+    
+    <p>If all rituals feel like too much, start with just two:</p>
+    <ol>
+        <li><strong>Morning ritual</strong></li>
+        <li><strong>Weekly review</strong></li>
+    </ol>
+    <p>Add the others once these feel automatic.</p>
+    
+    <hr>
+    
+    <h2>When You Skip a Day</h2>
+    
+    <p>You will skip days. That's fine.</p>
+    
+    <p><strong>Don't:</strong> Beat yourself up, try to "make up" missed rituals, or use it as evidence the system doesn't work.</p>
+    
+    <p><strong>Do:</strong> Just start again the next day. ChatGPT remembers context even when you don't check in.</p>
+    
+    <div class="callout tip">
+        <p style="margin: 0;"><strong>The rule:</strong> Never miss twice in a row. One skip is life. Two skips is a new habit forming.</p>
+    </div>
+    
+    <hr>
+    
+    <h2>The Compound Effect</h2>
+    
+    <table>
+        <tbody>
+            <tr>
+                <td><strong>Week 1</strong></td>
+                <td>Feels awkward. You're not sure what to say.</td>
+            </tr>
+            <tr>
+                <td><strong>Month 1</strong></td>
+                <td>ChatGPT knows your priorities, projects, rhythms. Check-ins get faster.</td>
+            </tr>
+            <tr>
+                <td><strong>Month 3</strong></td>
+                <td>You feel genuinely more organized. Nothing falls through the cracks.</td>
+            </tr>
+            <tr>
+                <td><strong>Month 6</strong></td>
+                <td>You have a record of tasks, decisions, lessons, and growth.</td>
+            </tr>
+            <tr>
+                <td><strong>Year 1</strong></td>
+                <td>You've built a second brain. New planning takes minutes, not hours.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p style="margin-top: 24px;"><strong>The rituals stay short. The cumulative effect is massive.</strong></p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== APPENDIX ==================== -->
+<div class="section appendix">
+    <div class="section-header">
+        <span class="section-number">APPENDIX</span>
+        <h1>Theory & Philosophy</h1>
+    </div>
+    
+    <p class="dim">You don't need to read this to use the kit. It explains the why behind the what.</p>
+    
+    <hr>
+    
+    <h2>Why This Works</h2>
+    
+    <p>Most people use ChatGPT wrong: one-off questions, no context, starting fresh every time. Like hiring an assistant and giving them amnesia daily.</p>
+    
+    <p>This system fixes that with four principles:</p>
+    
+    <ol>
+        <li><strong>Persistent Identity</strong> — Custom instructions mean ChatGPT knows you from the first message</li>
+        <li><strong>Compounding Memory</strong> — Facts, preferences, and patterns build over time</li>
+        <li><strong>Proactive Action</strong> — Scheduled tasks mean the AI works when you're not there</li>
+        <li><strong>Consistent Rituals</strong> — Regular check-ins create compounding context</li>
+    </ol>
+    
+    <h2>The Autonomy Framework</h2>
+    
+    <p>The four levels in your custom instructions create a natural trust progression:</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Level</th>
+                <th>AI Does</th>
+                <th>You Do</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>4: Full Auto</strong></td>
+                <td>Handles completely</td>
+                <td>Nothing (unless problems)</td>
+            </tr>
+            <tr>
+                <td><strong>3: Do + Report</strong></td>
+                <td>Acts, then tells you</td>
+                <td>Review after the fact</td>
+            </tr>
+            <tr>
+                <td><strong>2: Recommend</strong></td>
+                <td>Proposes action</td>
+                <td>Approve or reject</td>
+            </tr>
+            <tr>
+                <td><strong>1: Report Only</strong></td>
+                <td>Observes only</td>
+                <td>Decide everything</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p>Start conservative. Promote after repeated success. Demote after any overstep.</p>
+    
+    <hr>
+    
+    <h2>Philosophy</h2>
+    
+    <p style="font-size: 1.1rem; color: #fff; text-align: center; padding: 24px 0;">
+        <em>You're not configuring software.<br>You're training a partner.</em>
+    </p>
+    
+    <p>The files and workflows are a starting point. The real system emerges from use — corrections, habits, accumulated context, and shared history. After a month, your ChatGPT will be uniquely yours.</p>
+    
+    <p>The goal isn't to be more productive. It's to be more <em>intentional</em>. To make sure your days add up to something meaningful.</p>
+    
+    <p style="text-align: center; margin-top: 32px;">Start tomorrow morning.<br>Just say: <strong>"Good morning, let's plan today."</strong></p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== BACK PAGE ==================== -->
+<div class="back-page">
+    <img src="banner-logo.png" alt="AI Playbook">
+    
+    <p class="contact">
+        Questions? <a href="mailto:skylar@aiplaybook.work">skylar@aiplaybook.work</a>
+    </p>
+    
+    <p class="copyright">
+        © 2026 Palmer Labs. All rights reserved.
+    </p>
+</div>
+
+</body>
+</html>
