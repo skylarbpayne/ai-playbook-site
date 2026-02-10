@@ -73,21 +73,51 @@
         }
         
         .note a { color: #4ade80; }
+        
+        .error-container {
+            display: none;
+        }
+        
+        .error-container h1 {
+            color: #ef4444;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Success content (shown only with valid session_id) -->
+    <div class="container" id="success-content">
         <div class="check-icon">✓</div>
         
         <h1>You're in!</h1>
         
-        <p>Thanks for getting The AI Playbook. Click below to download your PDF.</p>
+        <p>Thanks for getting The AI Playbook Business Kit. Click below to download your PDF.</p>
         
-        <a href="business-kit.pdf" class="download-btn" download>Download Business Kit</a>
+        <a href="business-kit.pdf" class="download-btn" download="AI-Playbook-Business-Kit.pdf">Download Business Kit</a>
         
         <p class="note">
             Questions? Email <a href="mailto:palmer@skylarbpayne.com">palmer@skylarbpayne.com</a>
         </p>
     </div>
+    
+    <!-- Error content (shown when no session_id) -->
+    <div class="container error-container" id="error-content">
+        <h1>Oops!</h1>
+        
+        <p>This page is only accessible after completing your purchase.</p>
+        
+        <a href="/" class="download-btn">Get the Business Kit →</a>
+    </div>
+
+    <script>
+        // Check for session_id from Stripe checkout
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get('session_id');
+        
+        if (!sessionId) {
+            // No session_id - hide download, show error
+            document.getElementById('success-content').style.display = 'none';
+            document.getElementById('error-content').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
